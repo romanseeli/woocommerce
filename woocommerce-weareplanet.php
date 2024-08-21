@@ -4,14 +4,14 @@
  *
  * Description: Process WooCommerce payments with WeArePlanet.
  * License: Apache2
- * Version: 3.0.6
+ * Version: 3.0.11
  * License URI: http://www.apache.org/licenses/LICENSE-2.0
  * Author: Planet Merchant Services Ltd
  * Author URI: https://www.weareplanet.com
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * WC requires at least: 8.0.0
- * WC tested up to: 8.9.1
+ * WC tested up to: 9.0.2
  *
  * Text Domain: weareplanet
  * Domain Path: /languages/
@@ -39,14 +39,14 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 		const CK_INTEGRATION = 'wc_weareplanet_integration';
 		const CK_ORDER_REFERENCE = 'wc_weareplanet_order_reference';
 		const CK_ENFORCE_CONSISTENCY = 'wc_weareplanet_enforce_consistency';
-		const WC_MAXIMUM_VERSION = '8.7.0';
+		const WC_MAXIMUM_VERSION = '9.1.4';
 
 		/**
 		 * WooCommerce WeArePlanet version.
 		 *
 		 * @var string
 		 */
-		private $version = '3.0.6';
+		private $version = '3.0.11';
 
 		/**
 		 * The single instance of the class.
@@ -366,6 +366,28 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 				),
 				5,
 				0
+			);
+
+			// woocommerce_after_checkout_form is used by the legacy checkout.
+			add_action(
+				'woocommerce_after_checkout_form',
+				array(
+					$this,
+					'show_checkout_error_msg',
+				),
+				5,
+				0
+			);
+
+			// pre_render_block is used by the new Woocomerce Blocks.
+			add_filter(
+				'pre_render_block',
+				array(
+					$this,
+					'pre_render_block',
+				),
+				5,
+				2
 			);
 
 			add_action(
@@ -845,7 +867,7 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 		/**
 		 * Register checkout error msg.
 		 *
-		 * @return void
+		 * @return true
 		 */
 		public function register_checkout_error_msg() {
 			$msg = WC()->session->get( 'weareplanet_failure_message', null );
@@ -853,6 +875,8 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 				$this->add_notice( (string) $msg, 'error' );
 				WC()->session->set( 'weareplanet_failure_message', null );
 			}
+
+			return ! empty( $msg );
 		}
 
 		/**
@@ -861,8 +885,9 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 		 * @return void
 		 */
 		public function show_checkout_error_msg() {
-			$this->register_checkout_error_msg();
-			wc_print_notices();
+			if ($this->register_checkout_error_msg()) {
+				wc_print_notices();
+			}
 		}
 
 		/**
@@ -1056,6 +1081,17 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
             return $response;
         }
 
+		/**
+		 * Displays error messages, if there are, when rendering the woocommerce/checkout block.
+		 *
+		 * @return void
+		 */
+		public function pre_render_block() {
+			$args = func_get_args();
+			if (count($args) && !empty($args[1]) && !empty($args[1]['blockName']) && $args[1]['blockName'] === 'woocommerce/checkout') {
+				$this->show_checkout_error_msg();
+			}
+		}
     }
 
     add_action( 'woocommerce_blocks_loaded', 'WC_WeArePlanet_Blocks_Support' );

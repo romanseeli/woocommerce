@@ -770,3 +770,37 @@ Tested against:
 - [Tested Against] Woocommerce 8.9.1
 - [Tested Against] PHP SDK 4.2.0
 
+= 3.0.7 - Jun 14 2024 =
+- [Feature] Upgraded PHP-SDK to 4.2.1
+- [Tested Against] PHP 8.2
+- [Tested Against] Wordpress 6.5.3
+- [Tested Against] Woocommerce 8.9.1
+- [Tested Against] PHP SDK 4.2.0
+
+= 3.0.8 - Jul 2 2024 =
+- [Tested Against] PHP 8.0
+- [Tested Against] Wordpress 6.6.rc1
+- [Tested Against] Woocommerce 9.0.2
+- [Tested Against] PHP SDK 4.2.0
+
+= 3.0.9 - Jul 22 2024 =
+- [Bugfix] If payment fails, go back to checkout page.
+- [Tested Against] PHP 8.0
+- [Tested Against] Wordpress 6.6
+- [Tested Against] Woocommerce 9.1.2
+- [Tested Against] PHP SDK 4.4.0
+
+= 3.0.10 - Aug 14 2024 =
+- [Bugfix] Fixed syntax issues with older php versions (7.4)
+- [Tested Against] PHP 8.0 and PHP 7.4
+- [Tested Against] Wordpress 6.6
+- [Tested Against] Woocommerce 9.1.4
+- [Tested Against] PHP SDK 4.5.0
+
+= 3.0.11 - Aug 16 2024 =
+- [Bugfix] Fixed errors of undefined payment methods
+- [Tested Against] PHP 8.0 and PHP 7.4
+- [Tested Against] Wordpress 6.6
+- [Tested Against] Woocommerce 9.1.4
+- [Tested Against] PHP SDK 4.5.0
+
