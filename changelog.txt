@@ -811,3 +811,51 @@ Tested against:
 - [Tested Against] Woocommerce 9.1.4
 - [Tested Against] PHP SDK 4.5.0
 
+= 3.1.0 - Sept 12 2024 =
+- [Feature] Add privacy policy URL
+- [Feature] Adhere to WP code standards
+- [Feature] Add Support for WC 9.2.x
+- [Bugfix] Fix for error when renewing subscriptions
+- [Bugfix] Fix for deferred payments status being incorrect
+- [Tested Against] PHP 8.2 and PHP 7.4
+- [Tested Against] Wordpress 6.6
+- [Tested Against] Woocommerce 9.1.4 & Woocommerce 9.2.1
+- [Tested Against] PHP SDK 4.5.0
+
+= 3.2.0 - Sept 23 2024 =
+- [Feature] Add privacy policy URL
+- [Feature] Adhere to WP code standards
+- [Feature] Add Support for WC 9.3.x
+- [Bugfix] Fix for error when renewing subscriptions
+- [Bugfix] Fix for deferred payments status being incorrect
+- [Bugfix] Added migrations for 3.2.0 changes
+- [Tested Against] PHP 8.2
+- [Tested Against] Wordpress 6.6
+- [Tested Against] Woocommerce 9.3.1
+- [Tested Against] PHP SDK 4.5.0
+
+= 3.2.1 - Sept 24 2024 =
+- [Bugfix] Fix constant name
+- [Tested Against] PHP 8.2
+- [Tested Against] Wordpress 6.6
+- [Tested Against] Woocommerce 9.3.1
+- [Tested Against] PHP SDK 4.5.0
+
+= 3.3.0 - Sept 25 2024 =
+- [Bugfix] Fix for infinite load when Germanized plugin active
+- [Tested Against] PHP 8.2
+- [Tested Against] Wordpress 6.6
+- [Tested Against] Woocommerce 9.3.2
+- [Tested Against] PHP SDK 4.6.0
+
+Please ensure that in woocommerce->settings->tax, the "Round tax at subtotal level, instead of rounding per line" is disabled
+
+= 3.3.1 - October 14 2024 =
+- [Feature] Added CH, FR and IT translations
+- [Improvement] Improve payment method loading speed at checkout
+- [Bugfix] Fix for incompatibility with Translatepress
+- [Tested Against] PHP 8.2
+- [Tested Against] Wordpress 6.6
+- [Tested Against] Woocommerce 9.3.2
+- [Tested Against] PHP SDK 4.6.0
+
